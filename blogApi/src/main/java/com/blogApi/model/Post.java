@@ -1,11 +1,16 @@
 package com.blogApi.model;
 
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
+
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name= "posts")
+@Data
+@Builder
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,28 +30,4 @@ public class Post {
 
     @OneToMany(mappedBy = "post")
     private List<Component> components;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 }

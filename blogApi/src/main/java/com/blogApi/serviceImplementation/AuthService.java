@@ -1,6 +1,7 @@
 package com.blogApi.serviceImplementation;
 
 import com.blogApi.config.JwtService;
+import com.blogApi.exceptions.UserAlreadyExistException;
 import com.blogApi.model.Role;
 import com.blogApi.model.User;
 import com.blogApi.modelRequestDTO.AuthenticationRequest;
@@ -21,7 +22,10 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws UserAlreadyExistException {
+        if(repository.findByEmail(request.getEmail()).isPresent()){
+            throw new UserAlreadyExistException(request.getEmail());
+        }
         var user = User.builder()
                 .name(request.getFirstName())
                 .lastName(request.getLastName())

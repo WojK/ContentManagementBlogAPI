@@ -23,4 +23,10 @@ public class PostServiceImpl implements PostService {
         Post post = Post.builder().title(postRequest.getTitle()).date(LocalDate.now()).categories(categories).build();
         return postRepository.save(post);
     }
+
+    @Override
+    public List<Post> getPosts(){
+        return postRepository.findAll();
+    }
+
 }

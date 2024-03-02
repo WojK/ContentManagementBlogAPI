@@ -17,4 +17,9 @@ public class CategoryServiceImpl implements CategoryService {
         Category c = Category.builder().name(categoryRequest.getName()).build();
         return repository.save(c);
     }
+
+    @Override
+    public void deleteCategory(Integer categoryId) {
+        repository.deleteById(categoryId);
+    }
 }

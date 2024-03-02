@@ -1,7 +1,9 @@
 package com.blogApi.controllers;
 
+import com.blogApi.config.JwtService;
 import com.blogApi.model.Post;
 import com.blogApi.modelRequestDTO.CreatePostRequest;
+import com.blogApi.modelResponseDTO.PostDetailsResponse;
 import com.blogApi.modelResponseDTO.PostResponse;
 import com.blogApi.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -19,17 +21,26 @@ import java.util.stream.Collectors;
 public class PostController {
     private final PostService postService;
     private final ModelMapper mapper;
+    private final JwtService jwtService;
 
     @PostMapping
-    ResponseEntity<?> createPost(@RequestBody CreatePostRequest request){
-        Post post = postService.createPost(request);
-        return new ResponseEntity<>(post, HttpStatus.CREATED);
+    ResponseEntity<?> createPost(@RequestBody CreatePostRequest request, @RequestHeader("Authorization") String authHeader){
+        String userEmail = jwtService.extractUsername(authHeader.substring(7));
+        Post post = postService.createPost(request, userEmail);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    ResponseEntity<List<PostResponse>> getPosts(){
-        List<Post> posts = postService.getPosts();
+    ResponseEntity<List<PostResponse>> getPosts(@RequestParam(name = "user") String userEmail){
+        List<Post> posts = postService.getPosts(userEmail);
         return new ResponseEntity<>(posts.stream().map(p -> mapper.map(p, PostResponse.class))
                 .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<PostDetailsResponse> getPost(@PathVariable("id") Integer postId){
+        Post post = postService.getPost(postId);
+        PostDetailsResponse postResponse = mapper.map(post, PostDetailsResponse.class);
+        return new ResponseEntity<>(postResponse, HttpStatus.OK);
     }
 }

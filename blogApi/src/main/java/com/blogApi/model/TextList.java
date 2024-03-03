@@ -1,12 +1,15 @@
 package com.blogApi.model;
 
+import com.blogApi.service.IdentifierService;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Table(name="lists")
-public class TextList {
+@Data
+public class TextList implements IdentifierService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

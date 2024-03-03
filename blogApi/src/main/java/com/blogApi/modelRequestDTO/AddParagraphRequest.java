@@ -1,11 +1,10 @@
 package com.blogApi.modelRequestDTO;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class AddParagraphRequest {
-
-    private Integer postId;
+@Getter
+@Setter
+public class AddParagraphRequest extends AddComponentRequest {
     private String text;
-
 }

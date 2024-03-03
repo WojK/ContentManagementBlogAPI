@@ -1,5 +1,6 @@
 package com.blogApi.model;
 
+import com.blogApi.service.IdentifierService;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paragraph {
+public class Paragraph implements IdentifierService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")

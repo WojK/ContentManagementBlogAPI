@@ -7,6 +7,5 @@ import java.util.List;
 public interface PostService {
     Post createPost(CreatePostRequest postRequest, String userEmail);
     List<Post> getPosts(String userEmail);
-
     Post getPost(Integer id);
 }

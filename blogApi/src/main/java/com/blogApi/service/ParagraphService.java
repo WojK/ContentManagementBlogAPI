@@ -6,5 +6,6 @@ import com.blogApi.modelRequestDTO.UpdateParagraphRequest;
 public interface ParagraphService {
     boolean addParagraphToPost(AddParagraphRequest request, String userEmail);
     boolean updateParagraph(UpdateParagraphRequest request);
+    boolean deleteParagraph(Integer componentId);
 
 }

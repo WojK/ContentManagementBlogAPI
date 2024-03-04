@@ -1,7 +1,5 @@
 package com.blogApi.service;
 
-import com.blogApi.modelRequestDTO.AddComponentRequest;
-import com.blogApi.modelRequestDTO.AddParagraphRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ComponentService {
@@ -12,4 +10,5 @@ public interface ComponentService {
                                                                JpaRepository<T, K> repository,
                                                                String componentName
     );
+
 }

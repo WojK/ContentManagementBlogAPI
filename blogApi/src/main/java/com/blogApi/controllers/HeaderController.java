@@ -2,9 +2,8 @@ package com.blogApi.controllers;
 
 import com.blogApi.config.JwtService;
 import com.blogApi.modelRequestDTO.AddHeaderRequest;
-import com.blogApi.modelRequestDTO.AddParagraphRequest;
+import com.blogApi.modelRequestDTO.UpdateHeaderRequest;
 import com.blogApi.service.HeaderService;
-import com.blogApi.service.ParagraphService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +21,13 @@ public class HeaderController {
         String userEmail = jwtService.extractUsername(authHeader.substring(7));
 
         boolean isSuccess = headerService.addHeaderToPost(request, userEmail);
+        return isSuccess ? ResponseEntity.status(HttpStatus.OK).build() :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PutMapping
+    ResponseEntity<?> updateHeader(@RequestBody UpdateHeaderRequest request){
+        boolean isSuccess = headerService.updateHeader(request);
         return isSuccess ? ResponseEntity.status(HttpStatus.OK).build() :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }

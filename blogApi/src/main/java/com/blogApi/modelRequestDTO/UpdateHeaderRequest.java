@@ -1,8 +1,10 @@
 package com.blogApi.modelRequestDTO;
 
 import com.blogApi.model.HeaderType;
+import lombok.Data;
 
-public class UpdateHeader {
+@Data
+public class UpdateHeaderRequest {
     private Integer id;
     private String text;
     private HeaderType type;

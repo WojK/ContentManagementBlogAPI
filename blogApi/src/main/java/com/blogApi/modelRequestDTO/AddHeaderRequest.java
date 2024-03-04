@@ -6,6 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AddParagraphRequest extends AddComponentRequest {
+public class AddHeaderRequest extends AddComponentRequest{
+
     private String text;
+    private HeaderType type;
 }

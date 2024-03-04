@@ -2,7 +2,7 @@ package com.blogApi.serviceImplementation;
 
 import com.blogApi.model.Component;
 import com.blogApi.model.Post;
-import com.blogApi.repository.ComponentRepository;
+import com.blogApi.repository.ComponentRepo;
 import com.blogApi.repository.PostRepo;
 import com.blogApi.service.ComponentService;
 import com.blogApi.service.IdentifierService;
@@ -17,7 +17,7 @@ import java.util.Optional;
 public class ComponentServiceImpl implements ComponentService {
 
     private final PostRepo postRepository;
-    private final ComponentRepository componentRepository;
+    private final ComponentRepo componentRepository;
 
     @Override
     public <T extends IdentifierService,K> boolean addComponentToPost(T component,

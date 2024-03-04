@@ -19,6 +19,7 @@ public class Paragraph implements IdentifierService {
     @Column(name = "id")
     private Integer id;
 
+    @Column(name = "text")
     private String text;
 
 }

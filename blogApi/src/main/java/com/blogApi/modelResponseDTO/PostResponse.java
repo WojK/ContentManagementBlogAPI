@@ -1,7 +1,5 @@
 package com.blogApi.modelResponseDTO;
 
-import com.blogApi.model.Category;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -11,5 +9,5 @@ public class PostResponse {
     private Integer id;
     private String title;
     private LocalDate date;
-    private List<Category> categories;
+    private List<CategoryResponse> categories;
 }

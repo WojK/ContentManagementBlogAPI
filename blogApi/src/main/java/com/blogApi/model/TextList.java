@@ -2,6 +2,7 @@ package com.blogApi.model;
 
 import com.blogApi.service.IdentifierService;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name="lists")
 @Data
+@Builder
 public class TextList implements IdentifierService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,13 +18,9 @@ public class TextList implements IdentifierService {
     private Integer id;
 
     @Column(name = "type")
-    @Enumerated(EnumType.STRING)
-    private ListType type;
+    private String type;
 
-    @OneToMany(mappedBy = "list")
+    @OneToMany(mappedBy = "list", cascade = CascadeType.ALL)
     private List<ListElement> elements;
 }
 
-enum ListType {
-    Ordered, Unordered
-}

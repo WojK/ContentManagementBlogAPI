@@ -7,4 +7,6 @@ public interface HeaderService {
     boolean addHeaderToPost(AddHeaderRequest request, String userEmail);
     boolean updateHeader(UpdateHeaderRequest request);
 
+    boolean deleteHeader(Integer componentId);
+
 }

@@ -1,8 +1,10 @@
 package com.blogApi.serviceImplementation;
 
+import com.blogApi.model.Component;
 import com.blogApi.model.Header;
 import com.blogApi.modelRequestDTO.AddHeaderRequest;
 import com.blogApi.modelRequestDTO.UpdateHeaderRequest;
+import com.blogApi.repository.ComponentRepo;
 import com.blogApi.repository.HeaderRepo;
 import com.blogApi.service.ComponentService;
 import com.blogApi.service.HeaderService;
@@ -16,6 +18,7 @@ import java.util.Optional;
 public class HeaderServiceImpl implements HeaderService {
     private final ComponentService componentService;
     private final HeaderRepo headerRepository;
+    private final ComponentRepo componentRepo;
 
     @Override
     public boolean addHeaderToPost(AddHeaderRequest request, String userEmail) {
@@ -35,6 +38,16 @@ public class HeaderServiceImpl implements HeaderService {
         header.setType(request.getType());
         headerRepository.save(header);
 
+        return true;
+    }
+
+    @Override
+    public boolean deleteHeader(Integer componentId) {
+        Optional<Component> componentEntity = componentRepo.findById(componentId);
+        if(componentEntity.isEmpty()) return false;
+        Component component = componentEntity.get();
+
+        componentRepo.delete(component);
         return true;
     }
 }

@@ -35,6 +35,7 @@ public class SecurityConfig {
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
                                 .requestMatchers(HttpMethod.GET, "/post/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/category/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )

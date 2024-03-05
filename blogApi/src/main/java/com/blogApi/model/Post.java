@@ -29,7 +29,7 @@ public class Post {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Comment> comments;
 
     @ManyToMany
@@ -37,6 +37,6 @@ public class Post {
             inverseJoinColumns = @JoinColumn(name="category_id"))
     private List<Category> categories;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Component> components;
 }

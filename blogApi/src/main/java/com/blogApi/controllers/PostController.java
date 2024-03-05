@@ -8,6 +8,7 @@ import com.blogApi.modelResponseDTO.PostDetailsResponse;
 import com.blogApi.modelResponseDTO.PostResponse;
 import com.blogApi.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,14 @@ public class PostController {
         String userEmail = jwtService.extractUsername(authHeader.substring(7));
         Post post = postService.createPost(request, userEmail);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> deletePost(@PathVariable(name = "id") Integer id, @RequestHeader("Authorization") String authHeader)
+            throws BadRequestException {
+        String userEmail = jwtService.extractUsername(authHeader.substring(7));
+        postService.deletePost(id, userEmail);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @GetMapping

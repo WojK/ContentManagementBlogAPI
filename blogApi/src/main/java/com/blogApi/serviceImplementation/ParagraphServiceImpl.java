@@ -47,10 +47,7 @@ public class ParagraphServiceImpl implements ParagraphService {
         if(componentEntity.isEmpty()) return false;
         Component component = componentEntity.get();
 
-        Paragraph paragraph = paragraphRepository.findById(component.getComponentId()).orElseThrow();
-
         componentRepo.delete(component);
-        paragraphRepository.delete(paragraph);
         return true;
     }
 }

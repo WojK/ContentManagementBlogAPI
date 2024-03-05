@@ -1,15 +1,13 @@
 package com.blogApi.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "components")
 @Builder
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Component {
@@ -29,7 +27,12 @@ public class Component {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "componentId")
-    private Integer componentId;
+    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL)
+    private Paragraph paragraph;
 
+    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL)
+    private TextList textList;
+
+    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL)
+    private Header header;
 }

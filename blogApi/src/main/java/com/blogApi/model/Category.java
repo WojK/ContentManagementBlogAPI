@@ -26,4 +26,8 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     private List<Post> posts;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }

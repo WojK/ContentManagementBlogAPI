@@ -1,19 +1,17 @@
 package com.blogApi.model;
 
-import com.blogApi.service.IdentifierService;
+import com.blogApi.service.ComponentToPostService;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name="paragraphs")
+@Setter
+@Getter
 @Builder
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class Paragraph implements IdentifierService {
+@NoArgsConstructor
+public class Paragraph implements ComponentToPostService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -21,5 +19,9 @@ public class Paragraph implements IdentifierService {
 
     @Column(name = "text")
     private String text;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "component_id")
+    private Component component;
 
 }

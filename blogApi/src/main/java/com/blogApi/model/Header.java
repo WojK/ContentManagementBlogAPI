@@ -1,15 +1,17 @@
 package com.blogApi.model;
 
-import com.blogApi.service.IdentifierService;
+import com.blogApi.service.ComponentToPostService;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name="headers")
-@Data
+@Setter
+@Getter
 @Builder
-public class Header implements IdentifierService {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Header implements ComponentToPostService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -21,5 +23,9 @@ public class Header implements IdentifierService {
     @Column(name = "type")
     @Enumerated(EnumType.STRING)
     private HeaderType type;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "component_id")
+    private Component component;
 }
 

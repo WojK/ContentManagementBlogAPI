@@ -32,4 +32,11 @@ public class HeaderController {
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    @DeleteMapping
+    ResponseEntity<?> deleteParagraph(@RequestParam  Integer componentId){
+        boolean isSuccess = headerService.deleteHeader(componentId);
+        return isSuccess ? ResponseEntity.status(HttpStatus.OK).build() :
+                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
 }

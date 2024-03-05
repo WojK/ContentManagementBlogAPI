@@ -9,6 +9,7 @@ import com.blogApi.repository.PostRepo;
 import com.blogApi.repository.UserRepo;
 import com.blogApi.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -37,6 +38,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getPost(Integer id) {
         return postRepository.findById(id).orElseThrow();
+    }
+
+    @Override
+    public void deletePost(Integer id, String email) throws BadRequestException {
+        Post post = postRepository.findById(id).orElseThrow();
+        if(!post.getUser().getEmail().equals(email)) throw new BadRequestException();
+
+        postRepository.delete(post);
     }
 
 }

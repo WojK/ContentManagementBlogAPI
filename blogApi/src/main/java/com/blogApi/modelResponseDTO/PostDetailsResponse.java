@@ -1,7 +1,5 @@
 package com.blogApi.modelResponseDTO;
 
-import com.blogApi.model.Category;
-import com.blogApi.model.Component;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,5 +17,5 @@ public class PostDetailsResponse {
     private String title;
     private LocalDate date;
     private List<CategoryResponse> categories;
-    private List<?> components;
+    private List<ComponentResponse> components;
 }

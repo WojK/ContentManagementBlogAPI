@@ -3,9 +3,7 @@ package com.blogApi.controllers;
 import com.blogApi.config.JwtService;
 import com.blogApi.model.Post;
 import com.blogApi.modelRequestDTO.CreatePostRequest;
-import com.blogApi.modelResponseDTO.CategoryResponse;
-import com.blogApi.modelResponseDTO.PostDetailsResponse;
-import com.blogApi.modelResponseDTO.PostResponse;
+import com.blogApi.modelResponseDTO.*;
 import com.blogApi.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
@@ -50,9 +48,13 @@ public class PostController {
     @GetMapping("/{id}")
     ResponseEntity<PostDetailsResponse> getPost(@PathVariable("id") Integer postId){
         Post post = postService.getPost(postId);
+        List<ComponentResponse> componentResponse = post.getComponents()
+                .stream().map(ComponentResponse::new).toList();
+
         PostDetailsResponse postResponse = PostDetailsResponse.builder().title(post.getTitle()).id(post.getId())
                 .date(post.getDate())
                 .categories(post.getCategories().stream().map(x -> new CategoryResponse(x.getId(), x.getName())).toList())
+                .components(componentResponse)
                 .build();
         return new ResponseEntity<>(postResponse, HttpStatus.OK);
     }

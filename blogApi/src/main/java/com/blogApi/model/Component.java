@@ -35,4 +35,7 @@ public class Component {
 
     @OneToOne(mappedBy = "component", cascade = CascadeType.ALL)
     private Header header;
+
+    @OneToOne(mappedBy = "component", cascade = CascadeType.ALL)
+    private Image image;
 }

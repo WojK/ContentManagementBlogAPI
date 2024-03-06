@@ -18,7 +18,6 @@ public class ComponentServiceImpl implements ComponentService {
 
     private final PostRepo postRepository;
     private final ComponentRepo componentRepository;
-
     @Override
     public <T extends ComponentToPostService,K> boolean addComponentToPost(T component,
                                                                            Integer postId,

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+
 @AllArgsConstructor
 @Data
 public class ComponentResponse {
@@ -21,6 +22,7 @@ public class ComponentResponse {
                 : new ParagraphResponse(component.getParagraph().getText());
         this.list = component.getTextList() == null ? null : new ListResponse(component.getTextList().getType(),
                 component.getTextList().getElements().stream().map(ListElement::getText).toList());
+        this.image = component.getImage() == null ? null : new ImageUriResponse(component.getImage().getName(),"/image/"+component.getImage().getName());
     }
 
     private Integer id;
@@ -35,5 +37,8 @@ public class ComponentResponse {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private HeaderResponse header;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private ImageUriResponse image;
 
 }

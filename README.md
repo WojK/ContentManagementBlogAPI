@@ -61,3 +61,9 @@ API allows users creating posts and assigning specific chosen components to crea
     - Retrive specific image by name
 
 ![image](https://github.com/WojK/ContentManagementBlogAPI/assets/106305960/4f728ec6-8b0d-4fac-8a2c-decbfe0438d7)
+
+## Example response
+Example response from post-controller endpoint for retriving specific Post data with assigned components.
+
+![example_response](https://github.com/WojK/ContentManagementBlogAPI/assets/106305960/1d4a6dd4-fcc6-4475-8979-b7d36aae82ea)
+

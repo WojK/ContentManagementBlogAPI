@@ -54,10 +54,10 @@ API allows users creating posts and assigning specific chosen components to crea
     - Update specific
     - Delete
       
- ![components](https://github.com/WojK/ContentManagementBlogAPI/assets/106305960/6c8e0bf0-58ee-4934-81ab-96c92c326e01)
+![components](https://github.com/WojK/ContentManagementBlogAPI/assets/106305960/6c8e0bf0-58ee-4934-81ab-96c92c326e01)
 
  - Image 
     - Upload and assign to post
     - Retrive specific image by name
-      
-   ![image](https://github.com/WojK/ContentManagementBlogAPI/assets/106305960/4f728ec6-8b0d-4fac-8a2c-decbfe0438d7)
+
+![image](https://github.com/WojK/ContentManagementBlogAPI/assets/106305960/4f728ec6-8b0d-4fac-8a2c-decbfe0438d7)

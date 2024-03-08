@@ -30,11 +30,12 @@ public class ParagraphServiceImpl implements ParagraphService {
 
     @Override
     public boolean updateParagraph(UpdateParagraphRequest request) {
-        Optional<Paragraph> paragraphEntity = paragraphRepository.findById(request.getId());
+        Optional<Component> componentEntity = componentRepo.findById(request.getId());
+        if(componentEntity.isEmpty()) return false;
+        Component component = componentEntity.get();
 
-        if(paragraphEntity.isEmpty()) return false;
+        Paragraph paragraph = paragraphRepository.findById(component.getPost().getId()).orElseThrow();
 
-        Paragraph paragraph = paragraphEntity.get();
         paragraph.setText(request.getText());
         paragraphRepository.save(paragraph);
 

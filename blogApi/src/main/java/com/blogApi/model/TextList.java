@@ -2,15 +2,17 @@ package com.blogApi.model;
 
 import com.blogApi.service.ComponentToPostService;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name="lists")
-@Data
+@Setter
+@Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TextList implements ComponentToPostService {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

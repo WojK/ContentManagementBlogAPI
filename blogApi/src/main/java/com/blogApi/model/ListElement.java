@@ -1,13 +1,15 @@
 package com.blogApi.model;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name="elements")
-@Data
+@Setter
+@Getter
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ListElement {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -40,7 +40,7 @@ public class PostController {
     }
 
     @GetMapping
-    ResponseEntity<List<PostResponse>> getPosts(@RequestParam(name = "user") String userEmail){
+    ResponseEntity<List<PostResponse>> getPosts(@RequestParam(name = "userEmail") String userEmail){
         List<Post> posts = postService.getPosts(userEmail);
         return new ResponseEntity<>(posts.stream().map(p -> mapper.map(p, PostResponse.class))
                 .collect(Collectors.toList()), HttpStatus.OK);

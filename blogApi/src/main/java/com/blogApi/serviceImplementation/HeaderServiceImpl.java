@@ -29,11 +29,12 @@ public class HeaderServiceImpl implements HeaderService {
 
     @Override
     public boolean updateHeader(UpdateHeaderRequest request) {
-        Optional<Header> headerEntity = headerRepository.findById(request.getId());
 
-        if(headerEntity.isEmpty()) return false;
+        Optional<Component> componentEntity = componentRepo.findById(request.getId());
+        if(componentEntity.isEmpty()) return false;
+        Component component = componentEntity.get();
 
-        Header header = headerEntity.get();
+        Header header = headerRepository.findById(component.getHeader().getId()).orElseThrow();
         header.setText(request.getText());
         header.setType(request.getType());
         headerRepository.save(header);

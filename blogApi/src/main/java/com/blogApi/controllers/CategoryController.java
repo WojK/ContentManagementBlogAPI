@@ -29,7 +29,7 @@ public class CategoryController {
 
 
     @GetMapping
-    ResponseEntity<?> getCategories(@RequestParam(name = "user") String userEmail){
+    ResponseEntity<?> getCategories(@RequestParam(name = "userEmail") String userEmail){
         List<Category> categories = categoryService.getUserCategories(userEmail);
         List<CategoryResponse> response = categories.stream()
                 .map(x -> new CategoryResponse(x.getId(), x.getName())).toList();

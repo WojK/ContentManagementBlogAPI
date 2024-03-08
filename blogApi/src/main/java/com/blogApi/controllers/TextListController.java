@@ -3,6 +3,8 @@ package com.blogApi.controllers;
 import com.blogApi.config.JwtService;
 import com.blogApi.modelRequestDTO.AddHeaderRequest;
 import com.blogApi.modelRequestDTO.AddTextListRequest;
+import com.blogApi.modelRequestDTO.UpdateListRequest;
+import com.blogApi.modelRequestDTO.UpdateParagraphRequest;
 import com.blogApi.service.TextListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,5 +25,20 @@ public class TextListController {
         boolean isSuccess = textListService.addTextListToPost(request, userEmail);
         return isSuccess ? ResponseEntity.status(HttpStatus.OK).build() :
                 ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PutMapping
+    ResponseEntity<?> updateList(@RequestBody UpdateListRequest request){
+//        boolean isSuccess = paragraphService.updateParagraph(request);
+//        return isSuccess ? ResponseEntity.status(HttpStatus.OK).build() :
+//                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    @DeleteMapping
+    ResponseEntity<?> deleteList(@RequestParam  Integer componentId){
+//        boolean isSuccess = paragraphService.deleteParagraph(componentId);
+//        return isSuccess ? ResponseEntity.status(HttpStatus.OK).build() :
+//                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

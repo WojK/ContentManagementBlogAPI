@@ -1,6 +1,7 @@
 package com.blogApi.controllers;
 
 import com.blogApi.config.JwtService;
+import com.blogApi.model.Component;
 import com.blogApi.model.Post;
 import com.blogApi.modelRequestDTO.CreatePostRequest;
 import com.blogApi.modelResponseDTO.*;
@@ -48,8 +49,9 @@ public class PostController {
     @GetMapping("/{id}")
     ResponseEntity<PostDetailsResponse> getPost(@PathVariable("id") Integer postId){
         Post post = postService.getPost(postId);
-        List<ComponentResponse> componentResponse = post.getComponents()
-                .stream().map(ComponentResponse::new).toList();
+        List<Component> components = post.getComponents().stream()
+                .sorted((x,y) -> x.getOrderInPost() - y.getOrderInPost()).toList();
+        List<ComponentResponse> componentResponse = components.stream().map(ComponentResponse::new).toList();
 
         PostDetailsResponse postResponse = PostDetailsResponse.builder().title(post.getTitle()).id(post.getId())
                 .date(post.getDate())

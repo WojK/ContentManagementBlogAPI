@@ -1,10 +1,11 @@
 package com.blogApi.modelResponseDTO;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class CategoryResponse {
     private Integer id;
     private String name;

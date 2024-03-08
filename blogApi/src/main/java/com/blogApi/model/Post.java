@@ -39,4 +39,8 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     private List<Component> components;
+
+    public void removeCategory(Category c){
+        this.categories.remove(c);
+    }
 }

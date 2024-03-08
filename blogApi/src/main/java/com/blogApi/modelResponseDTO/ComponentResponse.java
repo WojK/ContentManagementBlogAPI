@@ -4,18 +4,18 @@ package com.blogApi.modelResponseDTO;
 import com.blogApi.model.Component;
 import com.blogApi.model.ListElement;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 
 @AllArgsConstructor
-@Data
+@NoArgsConstructor
+@Setter
+@Getter
 public class ComponentResponse {
 
     public ComponentResponse(Component component){
         this.id = component.getId();
         this.name = component.getName();
-        this.orderInPost = component.getOrderInPost();
         this.header = component.getHeader() == null ? null
                 : new HeaderResponse(component.getHeader().getText(), component.getHeader().getType());
         this.paragraph = component.getParagraph() == null ? null
@@ -26,7 +26,6 @@ public class ComponentResponse {
     }
 
     private Integer id;
-    private Integer orderInPost;
     private String name;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)

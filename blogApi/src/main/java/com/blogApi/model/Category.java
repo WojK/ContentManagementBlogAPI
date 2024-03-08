@@ -30,4 +30,9 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @PreRemove
+    private void removePostsAssociations(){
+        this.posts.forEach(p -> p.removeCategory(this));
+    }
 }

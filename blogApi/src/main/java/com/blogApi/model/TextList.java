@@ -22,7 +22,7 @@ public class TextList implements ComponentToPostService {
     @Column(name = "type")
     private String type;
 
-    @OneToMany(mappedBy = "list", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "list", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ListElement> elements;
 
     @OneToOne(cascade = CascadeType.ALL)

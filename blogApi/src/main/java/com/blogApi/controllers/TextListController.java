@@ -29,9 +29,8 @@ public class TextListController {
 
     @PutMapping
     ResponseEntity<?> updateList(@RequestBody UpdateListRequest request){
-//        boolean isSuccess = paragraphService.updateParagraph(request);
-//        return isSuccess ? ResponseEntity.status(HttpStatus.OK).build() :
-//                ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        textListService.updateList(request);
+
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     @DeleteMapping
